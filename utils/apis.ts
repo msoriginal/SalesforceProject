@@ -31,7 +31,7 @@ export async function deleteRecord(object: string, recordId: string): Promise<vo
             const accessToken = await getAccessToken();
             const instanceUrl = process.env.SFDC_BASE_URL as string  ;
            
-            
+            console.log(`Deleting ${object} with ID: ${recordId}`);
     
             // Delete the Account record
             const deleteResponse = await fetch(

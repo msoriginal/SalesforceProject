@@ -31,14 +31,14 @@ export default defineConfig({
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     screenshot: 'only-on-failure',
     trace: 'on-first-retry',
-    viewport: { width: 1024, height: 768 }
+    
   },
 
   /* Configure projects for major browsers */
   projects: [
      {
-      name: 'reg',
-      grep: /@regression/,
+      name: 'wip',
+      grep: /@wip/,
     },
     {
       name: 'chromium',

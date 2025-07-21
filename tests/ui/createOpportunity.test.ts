@@ -7,7 +7,7 @@ import { deleteRecord } from '../../utils/apis';
 
 let createdOpportunityId: string | undefined;
 
-test('Create Opportunity', async ({ page }) => {
+test('Create New Opportunity', async ({ page }) => {
 
     const basePage = new BasePage(page);
     const loginPage = new LoginPage(page);
@@ -50,15 +50,13 @@ test('Create Opportunity', async ({ page }) => {
     });
     // Get and log the created Opportunity ID
     await test.step('Get and log created Opportunity ID', async () => {
-        const createdOpportunityId = await basePage.getRecordId();
+        createdOpportunityId = await basePage.getRecordId();
         console.log('Created Opportunity ID:', createdOpportunityId);
     });
 
 });
 test.afterAll(async () => {
-    await test.step('Deleting record', async () => {
-        // Assuming you have a way to get the created Opportunity ID
-    
+    await test.step('Deleting record', async () => {    
         if (createdOpportunityId) {          
             await deleteRecord('Opportunity', createdOpportunityId);
         }

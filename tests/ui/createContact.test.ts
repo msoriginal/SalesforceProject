@@ -8,7 +8,7 @@ import { deleteRecord } from '../../utils/apis';
 
 let createdContactId: string | undefined;
 
-test('@regression Create New Contact in Salesforce', async ({ page }) => {
+test('Create New Contact in Salesforce', async ({ page }) => {
     const basePage = new BasePage(page); 
     const contactPage = new ContactPage(page);
     const loginPage = new LoginPage(page);

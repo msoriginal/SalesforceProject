@@ -20,7 +20,7 @@ export function generateRandomName(): string {
     return `${randomFirstName} ${randomLastName}`;
 }
 
-test('@regression Create New Account in Salesforce', async ({ page }) => {
+test('Create New Account in Salesforce', async ({ page }) => {
     const basePage = new BasePage(page); 
     const accountPage = new AccountPage(page);
     const loginPage = new LoginPage(page);
