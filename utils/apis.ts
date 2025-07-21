@@ -44,9 +44,9 @@ export async function deleteRecord(object: string, recordId: string): Promise<vo
                 }
             );
             if (deleteResponse.ok) {
-                console.log(`Deleted Account: ${recordId}`);
+                console.log(`Deleted ${object}: ${recordId}`);
             } else {
-                console.error(`Failed to delete Account: ${recordId}`);
+                console.error(`Failed to delete ${object}: ${recordId}`);
             }
         }
 }

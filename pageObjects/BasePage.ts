@@ -1,5 +1,9 @@
 import { Page, Locator } from '@playwright/test';
+
 import { getAccessToken } from '../utils/apis'; // Adjust the import path as necessary
+import * as dotenv from 'dotenv';
+
+dotenv.config();
 
 export class BasePage {
     protected page: Page;
@@ -87,30 +91,5 @@ export class BasePage {
         
     }
 
-    async  deleteRecord(object: string, recordId: string): Promise<void> {
-          if (recordId) {
-                 
-                const accessToken = await getAccessToken();
-                const instanceUrl = process.env.SFDC_BASE_URL as string  ;
-               
-                
-        
-                // Delete the Account record
-                const deleteResponse = await fetch(
-                    `${instanceUrl}/services/data/v58.0/sobjects/Account/${recordId}`,
-                    {
-                        method: 'DELETE',
-                        headers: {
-                            Authorization: `Bearer ${accessToken}`
-                        }
-                    }
-                );
-                if (deleteResponse.ok) {
-                    console.log(`Deleted Account: ${recordId}`);
-                } else {
-                    console.error(`Failed to delete Account: ${recordId}`);
-                }
-            }
-    }
     // Add more shared methods as needed
 }
