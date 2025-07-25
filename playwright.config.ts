@@ -42,6 +42,10 @@ export default defineConfig({
       grep: /@wip/,
     },
     {
+      name: 'sfui',
+      testDir: './tests/ui',
+    },
+    {
       name: 'chromium',
       use: { ...devices['Desktop Chrome'] },
     },
