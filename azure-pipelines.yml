@@ -8,9 +8,7 @@ pool:
 
 variables:
   CI: true
-  SFDC_BASE_URL: $(SFDC_BASE_URL)
-  SFDC_USERNAME: $(SFDC_USERNAME)
-  SFDC_PASSWORD: $(SFDC_PASSWORD)
+
 
 steps:
   - task: NodeTool@0
@@ -35,10 +33,7 @@ steps:
       echo "Running tests against: $SFDC_BASE_URL"
       npx playwright test --project=wip
     displayName: 'Run Playwright Tests for Project "wip"'
-    env:
-      SFDC_BASE_URL: $(SFDC_BASE_URL)
-      SFDC_USERNAME: $(SFDC_USERNAME)
-      SFDC_PASSWORD: $(SFDC_PASSWORD)
+
 
   - task: PublishTestResults@2
     condition: succeededOrFailed()
