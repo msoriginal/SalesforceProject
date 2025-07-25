@@ -35,6 +35,9 @@ steps:
     displayName: 'Run Playwright Tests for Project "wip"'
     env:
       SFDC_PASSWORD: $(SFDC_PASSWORD)
+      SFDC_TOKEN: $(SFDC_TOKEN)
+      SFDC_CLIENT_ID: $(SFDC_CLIENT_ID)
+      SFDC_CLIENT_SECRET: $(SFDC_CLIENT_SECRET)
 
 
   - task: PublishTestResults@2
