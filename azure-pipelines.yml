@@ -25,8 +25,8 @@ steps:
     displayName: 'Compile TypeScript'
 
   - script: |
-      npx playwright test --project=pro
-    displayName: 'Run Playwright Tests for Project "pro"'
+      npx playwright test --project=wip
+    displayName: 'Run Playwright Tests for Project "wip"'
 
   - task: PublishTestResults@2
     condition: succeededOrFailed()
