@@ -2,6 +2,7 @@ import { Page, Locator } from '@playwright/test';
 
 import { getAccessToken } from '../utils/apis'; // Adjust the import path as necessary
 import * as dotenv from 'dotenv';
+import { NavigationHelper } from './NavigationHelper';
 
 dotenv.config();
 
@@ -12,8 +13,8 @@ export class BasePage {
         this.page = page;
     }
 
-    async navigateTo(url: string) {
-        await this.page.goto(url);
+    async navigateTo(): Promise<NavigationHelper> {
+        return new NavigationHelper(this.page)
     }
 
     async waitForElement(selector: string | Locator, state: 'visible' | 'attached' = 'visible') {
@@ -21,29 +22,31 @@ export class BasePage {
         await locator.waitFor({ state });
     }
 
-    async click(selector: string) {
-        await this.page.locator(selector).click();
-    }
+     async click(element: Locator) {
+    await element.click();
+  }
 
-    async fill(selector: string, value: string) {
-        await this.page.locator(selector).fill(value);
-    }
+  async fill(element: Locator, value: string) {
+    await element.click();
+    await element.clear();
+    await element.fill(value);
+  }
 
-    async getText(selector: string) {
-        return await this.page.locator(selector).innerText();
-    }
+  async getText(element: Locator): Promise<string> {
+    return await element.innerText();
+  }
 
-    async isVisible(selector: string) {
-        return await this.page.locator(selector).isVisible();
-    }
+  async isVisible(element: Locator): Promise<boolean> {
+    return await element.isVisible();
+  }
 
-    async waitForNavigation(urlPart?: string) {
-        if (urlPart) {
-            await this.page.waitForURL(new RegExp(urlPart));
-        } else {
-            await this.page.waitForNavigation();
-        }
+  async waitForNavigation(urlPart?: string) {
+    if (urlPart) {
+      await this.page.waitForURL(new RegExp(urlPart));
+    } else {
+      await this.page.waitForNavigation();
     }
+  }
 
     async takeScreenshot(name: string, fullPage: boolean = false) {
         
