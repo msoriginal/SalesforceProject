@@ -21,10 +21,6 @@ steps:
     displayName: 'Install dependencies and Playwright'
 
   - script: |
-      npm run build
-    displayName: 'Compile TypeScript'
-
-  - script: |
       npx playwright test --project=wip
     displayName: 'Run Playwright Tests for Project "wip"'
 
