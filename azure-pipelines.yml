@@ -33,6 +33,8 @@ steps:
       echo "Running tests against: $SFDC_BASE_URL"
       npx playwright test --project=wip
     displayName: 'Run Playwright Tests for Project "wip"'
+    env:
+      SFDC_PASSWORD: $(SFDC_PASSWORD)
 
 
   - task: PublishTestResults@2
