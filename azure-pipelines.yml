@@ -23,6 +23,10 @@ steps:
   - script: |
       npx playwright test --project=wip
     displayName: 'Run Playwright Tests for Project "wip"'
+    env:
+      SFDC_BASE_URL: $(SFDC_BASE_URL)
+      SFDC_BASE_URL: $(SFDC_USERNAME)
+      SFDC_PASSWORD: $(SFDC_PASSWORD)
 
   - task: PublishTestResults@2
     condition: succeededOrFailed()

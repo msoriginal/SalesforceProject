@@ -4,6 +4,9 @@ import { LoginPage } from '../../pageObjects/LoginPage';
 import { Utility } from '../../utils/utility';
 import { CasePage } from '../../pageObjects/CasePage';
 import { NavigationHelper } from '../../pageObjects/NavigationHelper';
+import { deleteRecord } from '../../utils/apis';
+
+let createdRecordId: string | null;
 
 test('@wip Create a new case in salesforce', async({page})=>{
     const basePage = new BasePage(page);
@@ -33,9 +36,18 @@ test('@wip Create a new case in salesforce', async({page})=>{
     await basePage.fill(page.locator(`//records-record-layout-item[@field-label='RichTextField']//lightning-input-rich-text//div[starts-with(@class,'ql-editor')]`),`Rich text ${Utility.getRandomString(30)}`);
     await basePage.click(page.getByRole('button',{name:'Save', exact:true}));
 
-
-    
+    await test.step('Get and log created Record ID', async () => {
+            createdRecordId = await basePage.getRecordId();
+            console.log('Created Record ID:', createdRecordId);
+        });
 
 })
+test.afterAll(async () => {
+    await test.step('Deleting record', async () => {
+        if (createdRecordId) {          
+            await deleteRecord('Case', createdRecordId);
+        }
+    });
+});
 
 
