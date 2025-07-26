@@ -38,3 +38,9 @@ steps:
       testResultsFormat: 'JUnit'
       testResultsFiles: '**/test-results/**/*.xml'
       searchFolder: '$(System.DefaultWorkingDirectory)'
+
+  - task: PublishBuildArtifacts@1
+    inputs:
+      PathtoPublish: './playwright-report'
+      ArtifactName: 'drop'
+      publishLocation: 'Container'
