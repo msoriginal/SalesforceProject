@@ -23,7 +23,7 @@ steps:
 
   - script: |
       echo "Running tests against: $SFDC_BASE_URL"
-      npx playwright test --project=sfui
+      npx playwright test --project=sfui --workers=3
     displayName: 'Run Playwright Tests for Project "wip"'
     env:
       SFDC_PASSWORD: $(SFDC_PASSWORD)

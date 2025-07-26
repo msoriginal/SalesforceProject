@@ -8,7 +8,7 @@ import { deleteRecord } from '../../utils/apis';
 
 let createdRecordId: string | null;
 
-test('Create a new case in salesforce', async({page})=>{
+test('@wip Create a new case in salesforce', async({page})=>{
     const basePage = new BasePage(page);
     const loginPage = new LoginPage(page);
     const casePage = new CasePage(page);
@@ -25,7 +25,7 @@ test('Create a new case in salesforce', async({page})=>{
     //(await basePage.navigateTo()).salesforcePage('lightning/o/Contact/list');
     
 
-    await basePage.click(page.getByRole('button',{name: 'New', exact: true}))
+    //await basePage.click(page.getByRole('button',{name: 'New', exact: true}))
     await basePage.setLookupField('Contact Name','Mukesh Sharma');
     await basePage.setLookupField('Account Name','Barton Media');
     await basePage.selectPicklistByLabel('Status','New');
