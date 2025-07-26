@@ -38,6 +38,7 @@ steps:
       SFDC_TOKEN: $(SFDC_TOKEN)
       SFDC_CLIENT_ID: $(SFDC_CLIENT_ID)
       SFDC_CLIENT_SECRET: $(SFDC_CLIENT_SECRET)
+      SFDC_REFRESH_TOKEN: $(SFDC_REFRESH_TOKEN)
 
 
   - task: PublishTestResults@2
