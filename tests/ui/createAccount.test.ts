@@ -27,7 +27,7 @@ test('Create New Account in Salesforce', async ({ page }) => {
 
    
     await test.step('Login to Salesforce org', async () => {
-        await loginPage.login();
+        await loginPage.loginWithOauth();
     });
 
     const accountData = {

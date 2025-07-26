@@ -15,7 +15,7 @@ test('Create New Opportunity', async ({ page }) => {
 
     // Login to Salesforce
     await test.step('Login to Salesforce org', async () => {
-        await loginPage.login();
+        await loginPage.loginWithOauth();
     });
     // Navigate to the Lightning Sales App
     await test.step('Open Lightning Sales App', async () => {   

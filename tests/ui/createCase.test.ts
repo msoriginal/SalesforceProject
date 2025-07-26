@@ -8,14 +8,14 @@ import { deleteRecord } from '../../utils/apis';
 
 let createdRecordId: string | null;
 
-test('@wip Create a new case in salesforce', async({page})=>{
+test('Create a new case in salesforce', async({page})=>{
     const basePage = new BasePage(page);
     const loginPage = new LoginPage(page);
     const casePage = new CasePage(page);
     const navi = new NavigationHelper(page);
 
     await test.step('Login to Salesforce org', async () => {
-        await loginPage.login();
+        await loginPage.loginWithOauth();
     });
     await test.step('Open Lightning Sales App', async () => {
         await page.goto(`${process.env.SFDC_BASE_URL}/lightning/app/standard__LightningSales`);

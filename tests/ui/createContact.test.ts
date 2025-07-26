@@ -15,7 +15,7 @@ test('Create New Contact in Salesforce', async ({ page }) => {
 
    
     await test.step('Login to Salesforce org', async () => {
-        await loginPage.login();
+        await loginPage.loginWithOauth();
     });
     await test.step('Open Lightning Sales App', async () => {
         await page.goto(`${process.env.SFDC_BASE_URL}/lightning/app/standard__LightningSales`);
