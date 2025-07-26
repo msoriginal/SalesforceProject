@@ -22,9 +22,8 @@ steps:
     displayName: 'Install dependencies and Playwright'
 
   - script: |
-      echo "Running tests against: $SFDC_BASE_URL"
       npx playwright test --project=sfui --workers=2
-    displayName: 'Run Playwright Tests for Project "wip"'
+    displayName: 'Run Playwright Tests for Project "sfui"'
     env:
       SFDC_PASSWORD: $(SFDC_PASSWORD)
       SFDC_TOKEN: $(SFDC_TOKEN)
