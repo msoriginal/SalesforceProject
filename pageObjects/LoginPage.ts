@@ -35,8 +35,8 @@ export class LoginPage extends BasePage {
         const accessToken = response.access_token;
         const instanceUrl = response.instance_url;
         const frontdoorUrl = `${instanceUrl}/secur/frontdoor.jsp?sid=${accessToken}`;
-        const refresh_token= response.refresh_token;
-        console.log(`here is the refresh token: ${refresh_token}`);
+        
+        
         console.log(`Navigating to frontdoor.jsp: ${frontdoorUrl}`);
         
         try {
