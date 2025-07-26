@@ -1,7 +1,6 @@
 
 # Playwright
 node_modules/
-/screenshots/
 /test-results/
 /playwright-report/
 /blob-report/
@@ -11,3 +10,4 @@ node_modules/
 /.env.test
 example.spec.ts
 verifyAccount.test.ts
+/screenshots/
