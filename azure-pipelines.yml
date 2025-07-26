@@ -29,7 +29,7 @@ steps:
       key: 'npm-modules | "$(Agent.OS)" | package-lock.json'
       restoreKeys: |
         npm | "$(Agent.OS)"
-      path: 'npm_modules'
+      path: '~/.cache/ms-playwright'
     displayName: 'Cache npm_modules'
 
   - script: |
