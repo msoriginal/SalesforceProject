@@ -37,7 +37,7 @@ export class LoginPage extends BasePage {
         const frontdoorUrl = `${instanceUrl}/secur/frontdoor.jsp?sid=${accessToken}`;
         
         
-        console.log(`Navigating to frontdoor.jsp: ${frontdoorUrl}`);
+        console.log(`Navigating to frontdoor.jsp`);
         
         try {
         await this.page.goto(frontdoorUrl, { waitUntil: 'domcontentloaded' });
