@@ -24,14 +24,6 @@ steps:
       path: $(Pipeline.Workspace)/.npm
     displayName: 'Cache npm packages'
 
-  - task: Cache@2
-    inputs:
-      key: 'npm-modules | "$(Agent.OS)" | package-lock.json'
-      restoreKeys: |
-        npm | "$(Agent.OS)"
-      path: '~/.cache/ms-playwright'
-    displayName: 'Cache npm_modules'
-
   - script: |
       npm ci
       npx playwright install --with-deps
