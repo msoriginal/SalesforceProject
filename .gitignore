@@ -11,3 +11,4 @@ node_modules/
 example.spec.ts
 verifyAccount.test.ts
 /screenshots/
+credentials.json

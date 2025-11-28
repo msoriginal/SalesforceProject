@@ -3,11 +3,16 @@ import * as dotenv from 'dotenv';
 import * as path from 'path';
 import * as fs from 'fs';
 
-// Load environment variables from .env file
-dotenv.config();
-
 // Resolve the path to the .env file (used later for updating the refresh token)
 const envPath = path.resolve(__dirname, '../.env');
+
+// Load environment variables from .env file (explicit path ensures correct file is loaded
+// even if the script is started from a different working directory)
+dotenv.config({ path: envPath });
+
+// Helpful debug info when troubleshooting missing env variables
+console.log(`Loaded .env from: ${envPath}`);
+console.log(`SFDC_BASE_URL=${process.env.SFDC_BASE_URL}`);
 
 // This function automates the OAuth login flow and fetches the authorization code
 async function getAuthCode(page: Page) {
@@ -18,7 +23,7 @@ async function getAuthCode(page: Page) {
     redirect_uri: process.env.SFDC_REDIRECT_URI!,
     scope: 'web refresh_token api', // specify required scopes
   });
-  const authUrl = `${process.env.SFDC_BASE_URL}/services/oauth2/authorize?${params.toString()}`;
+  const authUrl = `${process.env.SFDC_BASE_URL!}/services/oauth2/authorize?${params.toString()}`;
 
   console.log(`Navigating to: ${authUrl}`);
   await page.goto(authUrl);
@@ -34,6 +39,8 @@ async function getAuthCode(page: Page) {
     page.waitForNavigation({ waitUntil: 'networkidle' }),
     page.click('input#Login'),
   ]);
+
+  await new Promise(res => setTimeout(res, 30000));
 
   // Check if the authorization page appears and click "Allow"
   const allowButton = page.getByRole('button', { name: 'Allow', exact: true });
@@ -129,7 +136,6 @@ async function main() {
 
     // Step 2: Get refresh token using the auth code
     const refreshToken = await getRefreshToken(code);
-
     // Step 3: Update .env file with new refresh token
     updateEnvFileWithRefreshToken(refreshToken);
   } catch (err) {

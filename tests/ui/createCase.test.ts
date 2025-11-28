@@ -15,7 +15,7 @@ test('@wip Create a new case in salesforce', async({page})=>{
     const navi = new NavigationHelper(page);
 
     await test.step('Login to Salesforce org', async () => {
-        await loginPage.loginWithOauth();
+        await (loginPage as any).loginWithJwt("Admin");
     });
     await test.step('Open Lightning Sales App', async () => {
         await page.goto(`${process.env.SFDC_BASE_URL}/lightning/app/standard__LightningSales`);
@@ -48,6 +48,4 @@ test.afterAll(async () => {
             await deleteRecord('Case', createdRecordId);
         }
     });
-});
-
-
+})
